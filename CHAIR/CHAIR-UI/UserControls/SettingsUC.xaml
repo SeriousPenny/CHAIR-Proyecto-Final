@@ -1,0 +1,133 @@
+﻿<UserControl x:Class="CHAIR_UI.UserControls.SettingsUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CHAIR_UI.UserControls"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:conv="clr-namespace:CHAIR_UI.Converters"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             FontFamily="{DynamicResource MaterialDesignFont}">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid HorizontalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="700"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Online sound -->
+            <materialDesign:Card Padding="20 10 20 10" Height="70" materialDesign:ShadowAssist.ShadowDepth="Depth2" materialDesign:ShadowAssist.ShadowEdges="All" Margin="0 10 0 0">
+                <CheckBox IsChecked="{Binding onlineNotifications, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    <CheckBox.LayoutTransform>
+                        <ScaleTransform ScaleX="2" ScaleY="2" />
+                    </CheckBox.LayoutTransform>
+                    <TextBlock>
+                    Play sound when a friend comes
+                    <TextBlock Foreground="{StaticResource PastelGreen}" Text="online"/>
+                </TextBlock>
+                </CheckBox>
+            </materialDesign:Card>
+
+            <!-- Offline sound -->
+            <materialDesign:Card Grid.Row="1" Padding="20 10 20 10" Height="70" materialDesign:ShadowAssist.ShadowDepth="Depth2" materialDesign:ShadowAssist.ShadowEdges="All" Margin="0 10 0 0">
+                <CheckBox IsChecked="{Binding offlineNotifications, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    <CheckBox.LayoutTransform>
+                        <ScaleTransform ScaleX="2" ScaleY="2" />
+                    </CheckBox.LayoutTransform>
+                    <TextBlock>
+                    Play sound when a friend goes
+                    <TextBlock Foreground="{StaticResource PastelRed}" Text="offline"/>
+                </TextBlock>
+                </CheckBox>
+            </materialDesign:Card>
+
+            <!-- Start playing sound -->
+            <materialDesign:Card Grid.Row="2" Padding="20 10 20 10" Height="70" materialDesign:ShadowAssist.ShadowDepth="Depth2" materialDesign:ShadowAssist.ShadowEdges="All" Margin="0 10 0 0">
+                <CheckBox IsChecked="{Binding playingGameNotifications, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    <CheckBox.LayoutTransform>
+                        <ScaleTransform ScaleX="2" ScaleY="2" />
+                    </CheckBox.LayoutTransform>
+                    <TextBlock>
+                    Play sound when a friend starts
+                    <TextBlock Foreground="{StaticResource PastelBlue}" Text="playing a game"/>
+                </TextBlock>
+                </CheckBox>
+            </materialDesign:Card>
+
+            <!-- Message sound -->
+            <materialDesign:Card Grid.Row="3" Padding="20 10 20 10" Height="70" materialDesign:ShadowAssist.ShadowDepth="Depth2" materialDesign:ShadowAssist.ShadowEdges="All" Margin="0 10 0 0">
+                <CheckBox IsChecked="{Binding messageNotifications, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    <CheckBox.LayoutTransform>
+                        <ScaleTransform ScaleX="2" ScaleY="2" />
+                    </CheckBox.LayoutTransform>
+                    <TextBlock>
+                    Play sound when you get or send a
+                    <TextBlock Foreground="{StaticResource PastelBlue}" Text="message"/>
+                </TextBlock>
+                </CheckBox>
+            </materialDesign:Card>
+
+            <!-- Minimize to tray -->
+            <materialDesign:Card Grid.Row="4" Padding="20 10 20 10" Height="70" materialDesign:ShadowAssist.ShadowDepth="Depth2" materialDesign:ShadowAssist.ShadowEdges="All" Margin="0 10 0 0">
+                <CheckBox IsChecked="{Binding minimizeToTray, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    <CheckBox.LayoutTransform>
+                        <ScaleTransform ScaleX="2" ScaleY="2" />
+                    </CheckBox.LayoutTransform>
+                    <TextBlock>
+                    Minimize to tray when 
+                    <TextBlock Foreground="{StaticResource PastelRed}" Text="X"/>
+                    is pressed
+                </TextBlock>
+                </CheckBox>
+            </materialDesign:Card>
+
+            <!-- Download folder -->
+            <materialDesign:Card Grid.Row="5" Padding="20 10 20 10" Height="70" materialDesign:ShadowAssist.ShadowDepth="Depth2" materialDesign:ShadowAssist.ShadowEdges="All" Margin="0 10 0 0">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="Games Installation Folder" FontSize="20"/>
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="FolderEdit" MouseEnter="SettingsMouseEnterFolderIcon" MouseLeave="SettingsMouseLeaveFolderIcon" VerticalAlignment="Center" Height="25" Width="25" Margin="0 0 8 0">
+                            <materialDesign:PackIcon.InputBindings>
+                                <MouseBinding Gesture="LeftClick" Command="{Binding openFolderDialogInstallationCommand}" />
+                            </materialDesign:PackIcon.InputBindings>
+                        </materialDesign:PackIcon>
+                        <TextBlock Text="{Binding installingFolder, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" FontSize="20" Foreground="DarkGray" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </StackPanel>
+            </materialDesign:Card>
+
+            <!-- Temp folder -->
+            <materialDesign:Card Grid.Row="6" Padding="20 10 20 10" Height="70" materialDesign:ShadowAssist.ShadowDepth="Depth2" materialDesign:ShadowAssist.ShadowEdges="All" Margin="0 10 0 0">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="Temporary Download Folder" FontSize="20"/>
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="FolderEdit" MouseEnter="SettingsMouseEnterFolderIcon" MouseLeave="SettingsMouseLeaveFolderIcon" VerticalAlignment="Center" Height="25" Width="25" Margin="0 0 8 0">
+                            <materialDesign:PackIcon.InputBindings>
+                                <MouseBinding Gesture="LeftClick" Command="{Binding openFolderDialogTempCommand}" />
+                            </materialDesign:PackIcon.InputBindings>
+                        </materialDesign:PackIcon>
+                        <TextBlock Text="{Binding tempDownloadFolder, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" FontSize="20" Foreground="DarkGray" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </StackPanel>
+            </materialDesign:Card>
+
+            <Button Content="Save" Grid.Row="7" FontSize="30" Height="50" Foreground="#2C0735" Background="{StaticResource PastelGreen}" Margin="0 10 0 0" Style="{StaticResource MaterialDesignRaisedButton}" Command="{Binding saveSettingsCommand}"/>
+
+            <Button Content="Reset" Grid.Row="8" FontSize="30" Height="50" Foreground="#2C0735" Background="{StaticResource PastelRed}" Margin="0 10 0 0" Style="{StaticResource MaterialDesignRaisedButton}" Command="{Binding resetSettingsCommand}"/>
+
+            <Button Content="Edit Profile" Grid.Row="9" FontSize="30" Height="50" Foreground="#2C0735" Background="{StaticResource PastelBlue}" Margin="0 10 0 10" Style="{StaticResource MaterialDesignRaisedButton}" Command="{Binding goToProfileEditCommand}"/>
+        </Grid>
+    </ScrollViewer>
+</UserControl>
