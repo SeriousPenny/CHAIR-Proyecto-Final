@@ -27,4 +27,11 @@ Este es mi proyecto final del Grado Superior de Desarrollo de Aplicaciones Multi
   - Perdonar baneos de usuarios
   - Añadir nuevos juegos a la tienda
   - Cambiar el juego principal de la tienda
+
 Por desgracia, para que funcione de verdad haría falta tener un servidor dedicado que corra el servidor y la API. Como no dispongo de tal, no es posible probarlo, pero todo el código se encuentra ahí. Lo máximo que puedo hacer si queréis ver cómo es funcionando es que entréis al siguiente enlace donde hay algunas screenshots de la aplicación en funcionamiento: https://drive.google.com/file/d/1tzWXCpHQJTIEbWpdIEOsBQJJD57T5XQw/view?usp=sharing
+
+Existen 4 carpetas:
+- CHAIR: El cliente hecho en WPF con el patrón MVVM
+- CHAIRAPI: La API hecha en .NET Core
+- CHAIRSignalR: El servidor hecho en .NET Framework con la librería de SignalR
+- CHAIRDB: Los scripts de la BBDD de SQL Server
